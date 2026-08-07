@@ -47,12 +47,12 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 16px 32px;
-  background: rgba(11, 14, 20, 0.85);
+  background: rgba(33, 32, 6, 0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 
-.topbar__brand { display: flex; align-items: center; gap: 10px; }
+.topbar__brand { display: flex; align-items: center; gap: 10px;}
 
 .topbar__dot {
   width: 9px;
