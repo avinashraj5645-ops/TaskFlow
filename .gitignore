@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+venv/
+.env
+*.db
+benchmark_results.txt
+.DS_Store

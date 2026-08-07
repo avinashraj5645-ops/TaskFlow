@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TaskFlow — Pod Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__dot" id="live-dot"></span>
+      <span class="topbar__title">TaskFlow</span>
+      <span class="topbar__subtitle">Pod Console</span>
+    </div>
+    <div class="topbar__stats" id="topbar-stats">
+      <div class="stat">
+        <span class="stat__value" id="stat-total">0</span>
+        <span class="stat__label">tasks</span>
+      </div>
+      <div class="stat stat--low">
+        <span class="stat__value" id="stat-low">0</span>
+        <span class="stat__label">low</span>
+      </div>
+      <div class="stat stat--medium">
+        <span class="stat__value" id="stat-medium">0</span>
+        <span class="stat__label">med</span>
+      </div>
+      <div class="stat stat--high">
+        <span class="stat__value" id="stat-high">0</span>
+        <span class="stat__label">high</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- CHANGEABLE: sticky add-task panel -->
+    <section class="panel panel--form" id="add-panel" aria-labelledby="add-heading">
+      <h2 id="add-heading" class="panel__heading">Queue a task</h2>
+      <p class="panel__hint">Fields feed straight into the pick-list on the right.</p>
+
+      <form id="task-form" novalidate>
+        <div class="field">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="e.g. Restock aisle 3 cold shelf" autocomplete="off" />
+          <span class="field__error" id="title-error" role="alert"></span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="due_date">Due</label>
+            <input type="text" id="due_date" name="due_date" placeholder="tomorrow / 2026-08-15" autocomplete="off" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary">Add to queue</button>
+      </form>
+
+      <div class="divider"><span>or</span></div>
+
+      <form id="quickadd-form">
+        <label for="quickadd-input">Quick-add from a sentence</label>
+        <textarea id="quickadd-input" rows="3" placeholder="Restock the cold shelf, it's urgent, needed by next friday"></textarea>
+        <button type="submit" class="btn btn--ghost">Parse &amp; queue</button>
+        <p class="panel__note">Runs the AI quick-add parser (Section 3) server-side.</p>
+      </form>
+    </section>
+
+    <!-- Task list -->
+    <section class="panel panel--list" aria-labelledby="list-heading">
+      <div class="list-toolbar">
+        <h2 id="list-heading" class="panel__heading">Pick queue</h2>
+        <div class="toolbar-controls">
+          <input type="search" id="search-input" placeholder="Search exact title…" />
+          <select id="sort-select">
+            <option value="">Unsorted</option>
+            <option value="priority">Sort: priority</option>
+            <option value="due_date">Sort: due date</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="task-list" class="task-list" aria-live="polite">
+        <!-- rendered by app.js via createElement/appendChild -->
+      </div>
+
+      <p class="empty-state" id="empty-state" hidden>Queue's clear. Add a task above to get started.</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>TaskFlow · connected to <code id="api-base-label">API</code></span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
