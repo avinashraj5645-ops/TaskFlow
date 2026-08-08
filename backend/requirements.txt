@@ -5,4 +5,8 @@ pydantic==2.13.4
 python-dotenv==1.2.2
 psycopg2-binary==2.9.12
 email-validator==2.3.0
+<<<<<<< HEAD
 requests==2.32.3
+=======
+requests==2.32.3
+>>>>>>> 90660250a994f2467981cd6f3d740823588b4783
