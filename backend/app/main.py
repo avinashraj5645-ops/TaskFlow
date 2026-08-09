@@ -36,7 +36,7 @@ async def log_requests(request: Request, call_next):
 # CORS — CHANGEABLE: FRONTEND_ORIGIN must match wherever you actually serve
 # frontend/ from (see README "Running the app").
 # ---------------------------------------------------------------------------
-FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://127.0.0.1:5500")
+FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "https://task-flow-sandy-sigma.vercel.app/")
 
 app.add_middleware(
     CORSMiddleware,
